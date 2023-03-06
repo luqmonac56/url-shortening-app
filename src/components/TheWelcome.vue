@@ -7,8 +7,8 @@
       <p class="lg:w-[80%]  mt-6 text-[#9e9aa7]">Build your brand's recognition and get detailed insights on how your links are performing.</p>
       <button class=" mt-8 rounded-full px-6 py-2 bg-[#2acfcf] text-white">Get Started</button>
     </div>
-    <div class=" flex-[1] mr-[-2rem] pl-4">
-      <img class="w-full" src="../assets/images/illustration-working.svg" alt="">
+    <div class=" flex-[1]  pl-4">
+      <img class="w-full mr-[-2rem]" src="../assets/images/illustration-working.svg" alt="">
     </div>
   </section>
 
@@ -21,21 +21,21 @@
       <h2 class="text-center text-3xl lg:text-5xl font-bold">Advanced Statistics</h2>
       <p class="text-[#9e9aa7] text-center  mt-4">Track how your links are performing accross the web with our advanced statistics dashboard.</p>
       <div class=" lg:flex justify-between items-center  mt-[3rem]">
-        <div class="card shadow-2xl">
+        <div class="card w-full lg:w-[30%] shadow-2xl">
           <div class=" p-5 bg-[#35323e] w-fit rounded-full relative -top-8">
             <img src="../assets/images/icon-brand-recognition.svg" alt="icon-brand-recognition">
           </div>
           <h3>Brand Recognition</h3>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius blanditiis aliquid odio amet architecto omnis optio doloribus est harum voluptatem.</p>
         </div>
-        <div class="card lg:mt-[5rem] shadow-2xl">
+        <div class="card w-full lg:w-[30%] lg:mt-[5rem] shadow-2xl">
           <div class=" p-5 bg-[#35323e] w-fit rounded-full relative -top-8">
             <img src="../assets/images/icon-brand-recognition.svg" alt="icon-brand-recognition">
           </div>
           <h3>Brand Recognition</h3>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius blanditiis aliquid odio amet architecto omnis optio doloribus est harum voluptatem.</p>
         </div>
-        <div class="card lg:mt-[10rem] shadow-2xl">
+        <div class="card w-full lg:w-[30%] lg:mt-[10rem] shadow-2xl">
           <div class=" p-5 bg-[#35323e] w-fit rounded-full relative -top-8">
             <img src="../assets/images/icon-brand-recognition.svg" alt="icon-brand-recognition">
           </div>
@@ -89,7 +89,8 @@
   }
   .card{
     background: #fff;
-    width: 100%;
+    margin: 0 auto;
+    //width: 100%;
     max-width: 400px;
     padding: 0 2rem 2rem 2rem;
     display: flex;
