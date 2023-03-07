@@ -12,30 +12,41 @@
     </div>
   </section>
 
-  <section class="  relative px-4 lg:px-12 pb-[8rem] bg-[#bfbfbf36] mt-[10rem]">
-    <div class="input-div px-4 py-8 lg:p-[3.5rem] flex flex-col lg:flex-row gap-4 lg:gap-8 relative -top-[5rem]">
-      <input type="url" placeholder="Shorten a link here..." >
-      <button class=" py-4 lg:px-8">Shorten it!</button>
+  <section class="  relative px-4  md:px-12 pb-[8rem] bg-[#bfbfbf36] mt-[10rem]">
+    <form @submit.prevent="getShortLink" class="input-div px-4 py-8 lg:p-[3.5rem] flex flex-col lg:flex-row gap-4 lg:gap-8 relative -top-[5rem]">
+      <input v-model="longLink"  type="url" placeholder="Shorten a link here..." >
+      <button type="submit" class=" py-4 lg:px-8">Shorten it!</button>
+    </form>
+
+    <div class=" mb-8 display-results px-4 py-4 lg:p-[3.5rem] flex flex-col lg:flex-row justify-between gap-4 lg:gap-8 shadow-2xl bg-white">
+      <p>{{ links.original_link }}</p>
+       
+      <div class=" flex flex-col lg:flex-row gap-4 lg:gap-8">
+        <p class="text-[#2acfcf]">{{ links.full_short_link2 }}</p>
+        <button  class="bg-[#2acfcf] py-4 lg:px-8 rounded-xl text-white focus:bg-slate-800 " @click="handleCopy">{{ buttonText }}</button>
+      </div>
+      
     </div>
+
     <section>
       <h2 class="text-center text-3xl lg:text-5xl font-bold">Advanced Statistics</h2>
       <p class="text-[#9e9aa7] text-center  mt-4">Track how your links are performing accross the web with our advanced statistics dashboard.</p>
-      <div class=" lg:flex justify-between items-center  mt-[3rem]">
-        <div class="card w-full lg:w-[30%] shadow-2xl">
+      <div class=" md:flex flex-wrap justify-between items-center  mt-[3rem]">
+        <div class="card w-full mt-[3.5rem] md:w-[45%] lg:mt-0 lg:w-[30%] shadow-2xl">
           <div class=" p-5 bg-[#35323e] w-fit rounded-full relative -top-8">
             <img src="../assets/images/icon-brand-recognition.svg" alt="icon-brand-recognition">
           </div>
           <h3>Brand Recognition</h3>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius blanditiis aliquid odio amet architecto omnis optio doloribus est harum voluptatem.</p>
         </div>
-        <div class="card w-full lg:w-[30%] lg:mt-[5rem] shadow-2xl">
+        <div class="card w-full mt-[3.5rem] md:w-[45%] lg:w-[30%] lg:mt-[5rem] shadow-2xl">
           <div class=" p-5 bg-[#35323e] w-fit rounded-full relative -top-8">
             <img src="../assets/images/icon-brand-recognition.svg" alt="icon-brand-recognition">
           </div>
           <h3>Brand Recognition</h3>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius blanditiis aliquid odio amet architecto omnis optio doloribus est harum voluptatem.</p>
         </div>
-        <div class="card w-full lg:w-[30%] lg:mt-[10rem] shadow-2xl">
+        <div class="card w-full mt-[3.5rem] lg:w-[30%] lg:mt-[10rem] shadow-2xl">
           <div class=" p-5 bg-[#35323e] w-fit rounded-full relative -top-8">
             <img src="../assets/images/icon-brand-recognition.svg" alt="icon-brand-recognition">
           </div>
@@ -54,6 +65,47 @@
 
 
 <script setup>
+import { ref } from 'vue'
+
+const longLink = ref('')
+const links = ref([])
+const buttonText = ref("Copy")
+
+const getShortLink = async()=>{
+  const url = `https://api.shrtco.de/v2/shorten?url=${longLink.value}`
+
+  try {
+    if (!longLink.value) {
+      alert('Input a link please')
+    }
+
+    else{
+      const res = await fetch(url)
+
+      let data = await res.json()
+
+      links.value = data.result
+
+      console.log(links.value);
+      console.log('luqman');
+
+      longLink.value = ""
+    }
+  } catch (error) {
+    
+  }
+
+}
+
+
+const handleCopy = ()=>{
+  navigator.clipboard.writeText(links.value.full_short_link2)
+  buttonText.value = 'Copied'
+}
+
+
+
+
 
 </script>
 
@@ -89,9 +141,8 @@
   }
   .card{
     background: #fff;
-    margin: 0 auto;
     //width: 100%;
-    max-width: 400px;
+    //max-width: 400px;
     padding: 0 2rem 2rem 2rem;
     display: flex;
     flex-direction: column;
