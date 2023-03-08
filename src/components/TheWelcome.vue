@@ -1,5 +1,3 @@
-
-
 <template>
   <section class="flex flex-col-reverse lg:flex-row mt-6 lg:pl-12 items-center justify-between">
     <div class=" lg:flex-[1] w-full p-4 lg:p-0 text-center lg:text-left">
@@ -18,10 +16,10 @@
       <button type="submit" class=" py-4 lg:px-8">Shorten it!</button>
     </form>
 
-    <div class=" mb-8 display-results px-4 py-4 lg:p-[3.5rem] flex flex-col lg:flex-row justify-between gap-4 lg:gap-8 shadow-2xl bg-white">
+    <div v-if="links.full_short_link2" class=" rounded-2xl mb-8 display-results px-4 py-4 lg:p-[3.5rem] flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-8 shadow-2xl bg-white">
       <p>{{ links.original_link }}</p>
        
-      <div class=" flex flex-col lg:flex-row gap-4 lg:gap-8">
+      <div class=" flex flex-col lg:flex-row items-center gap-4 lg:gap-8">
         <p class="text-[#2acfcf]">{{ links.full_short_link2 }}</p>
         <button  class="bg-[#2acfcf] py-4 lg:px-8 rounded-xl text-white focus:bg-slate-800 " @click="handleCopy">{{ buttonText }}</button>
       </div>
@@ -37,21 +35,21 @@
             <img src="../assets/images/icon-brand-recognition.svg" alt="icon-brand-recognition">
           </div>
           <h3>Brand Recognition</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius blanditiis aliquid odio amet architecto omnis optio doloribus est harum voluptatem.</p>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius blanditiis aliquid odio amet architecto omnis est harum voluptatem.</p>
         </div>
         <div class="card w-full mt-[3.5rem] md:w-[45%] lg:w-[30%] lg:mt-[5rem] shadow-2xl">
           <div class=" p-5 bg-[#35323e] w-fit rounded-full relative -top-8">
             <img src="../assets/images/icon-brand-recognition.svg" alt="icon-brand-recognition">
           </div>
           <h3>Brand Recognition</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius blanditiis aliquid odio amet architecto omnis optio doloribus est harum voluptatem.</p>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius blanditiis aliquid odio amet architecto omnis  est harum voluptatem.</p>
         </div>
         <div class="card w-full mt-[3.5rem] lg:w-[30%] lg:mt-[10rem] shadow-2xl">
           <div class=" p-5 bg-[#35323e] w-fit rounded-full relative -top-8">
             <img src="../assets/images/icon-brand-recognition.svg" alt="icon-brand-recognition">
           </div>
           <h3>Brand Recognition</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius blanditiis aliquid odio amet architecto omnis optio doloribus est harum voluptatem.</p>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius blanditiis aliquid odio amet architecto omnis est harum voluptatem.</p>
         </div>
       </div>
     </section>
@@ -99,13 +97,12 @@ const getShortLink = async()=>{
 
 
 const handleCopy = ()=>{
-  navigator.clipboard.writeText(links.value.full_short_link2)
-  buttonText.value = 'Copied'
+  if (links.value.full_short_link2) {
+   navigator.clipboard.writeText(links.value.full_short_link2)
+  buttonText.value = 'Copied' 
+  }
+  
 }
-
-
-
-
 
 </script>
 
