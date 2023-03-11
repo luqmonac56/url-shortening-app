@@ -12,16 +12,16 @@
 
   <section class="  relative px-4  md:px-12 pb-[8rem] bg-[#bfbfbf36] mt-[10rem]">
     <form @submit.prevent="getShortLink" class="input-div px-4 py-8 lg:p-[3.5rem] flex flex-col lg:flex-row gap-4 lg:gap-8 relative -top-[5rem]">
-      <input v-model="longLink"  type="url" placeholder="Shorten a link here..." >
+      <input v-model="longLink"  type="url" pattern="^(https?:\/\/)?([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+.*)$" placeholder="Shorten a link here..." >
       <button type="submit" class=" py-4 lg:px-8">Shorten it!</button>
     </form>
 
     <div v-if="links.full_short_link2" class=" rounded-2xl mb-8 display-results px-4 py-4 lg:p-[3.5rem] flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-8 shadow-2xl bg-white">
       <p>{{ links.original_link }}</p>
        
-      <div class=" flex flex-col lg:flex-row items-center gap-4 lg:gap-8">
+      <div class=" flex flex-col lg:flex-row items-center gap-4 lg:gap-8 w-full md:w-auto">
         <p class="text-[#2acfcf]">{{ links.full_short_link2 }}</p>
-        <button  class="bg-[#2acfcf] py-4 lg:px-8 rounded-xl text-white focus:bg-slate-800 " @click="handleCopy">{{ buttonText }}</button>
+        <button  class="bg-[#2acfcf] py-4 lg:px-8 rounded-xl text-white focus:bg-slate-800 w-full " @click="handleCopy">{{ buttonText }}</button>
       </div>
       
     </div>
